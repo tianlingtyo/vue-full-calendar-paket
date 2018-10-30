@@ -1,0 +1,154 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'G:\\Node\\node.exe',
+1 verbose cli   'G:\\Node\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'unpublish',
+1 verbose cli   '--force' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.2
+4 warn using --force I sure hope you know what you are doing.
+5 silly unpublish args[0] undefined
+6 silly unpublish thing {}
+7 verbose unpublish { name: 'vue-full-calendar-paket',
+7 verbose unpublish   version: '2.7.0',
+7 verbose unpublish   description: 'FullCalendar wrapper for vue',
+7 verbose unpublish   main: 'index.js',
+7 verbose unpublish   browserify: { transform: [ 'babelify', 'vueify' ] },
+7 verbose unpublish   scripts: { test: 'jest -i' },
+7 verbose unpublish   repository:
+7 verbose unpublish    { type: 'git',
+7 verbose unpublish      url: 'git+https://github.com/tianlingtyo/vue-full-calendar-paket.git' },
+7 verbose unpublish   keywords: [ 'vue', 'fullcalendar', 'calendar', 'js' ],
+7 verbose unpublish   author: { name: 'Brock Reece' },
+7 verbose unpublish   license: 'ISC',
+7 verbose unpublish   bugs: { url: 'https://github.com/tianlingtyo/vue-full-calendar-paket/issues' },
+7 verbose unpublish   homepage: 'https://github.com/tianlingtyo/vue-full-calendar-paket#readme',
+7 verbose unpublish   dependencies:
+7 verbose unpublish    { 'babel-plugin-transform-runtime': '^6.23.0',
+7 verbose unpublish      fullcalendar: '^3.4.0',
+7 verbose unpublish      'lodash.defaultsdeep': '^4.6.0' },
+7 verbose unpublish   devDependencies:
+7 verbose unpublish    { 'babel-core': '^6.26.0',
+7 verbose unpublish      'babel-jest': '^21.2.0',
+7 verbose unpublish      'babel-loader': '^7.1.2',
+7 verbose unpublish      'babel-preset-stage-2': '^6.24.1',
+7 verbose unpublish      jest: '^21.2.1',
+7 verbose unpublish      'jest-serializer-vue': '^0.3.0',
+7 verbose unpublish      'jest-vue': '^0.8.2',
+7 verbose unpublish      jquery: '^3.2.1',
+7 verbose unpublish      vue: '^2.5.4',
+7 verbose unpublish      'vue-template-compiler': '^2.5.4' },
+7 verbose unpublish   jest:
+7 verbose unpublish    { moduleFileExtensions: [ 'js', 'vue' ],
+7 verbose unpublish      moduleNameMapper: { '^@/(.*)$': '<rootDir>/$1' },
+7 verbose unpublish      transform:
+7 verbose unpublish       { '^.+\.js$': '<rootDir>/node_modules/babel-jest',
+7 verbose unpublish         '.*\.(vue)$': '<rootDir>/node_modules/jest-vue' },
+7 verbose unpublish      snapshotSerializers: [ '<rootDir>/node_modules/jest-serializer-vue' ],
+7 verbose unpublish      mapCoverage: true },
+7 verbose unpublish   readme: '# vue-fullcalendar\n[![npm version](https://badge.fury.io/js/vue-full-calendar.svg)](https://badge.fury.io/js/vue-full-calendar)\n[![Build Status](https://travis-ci.org/CroudSupport/vue-fullcalendar.svg?branch=master)](https://travis-ci.org/CroudSupport/vue-fullcalendar)\n\n\n## Installation\n```\nnpm install --save vue-full-calendar-paket\n```\nOr for Vue 1.x users\n```\nnpm install --save vue-full-calendar-paket@0.0.3\n```\n\nInstalling the plugin will globally add the `full-calendar` component to your project.\n\n```js\n//main.js\nimport FullCalendar from \'vue-full-calendar\'\nVue.use(FullCalendar)\n```\n\nBut you can also import the standalone component to add locally or for more complex installations.\n\n```js\n// foo.vue\nimport { FullCalendar } from \'vue-full-calendar\'\nexport default {\n  components: {\n    FullCalendar,\n  },\n}\n```\n\n### jQuery\n\nPlease note that fullcalendar depends on jQuery, but you won\'t need to add it to your project manually, fullcalendar will handle this for you automatically if jQuery is not detected.\n\n### CSS\nAs of version 2.0, we have removed the automatic import of the fullcalendar.css, you will need to explicitly import this css file in your project.\n```js\nimport \'fullcalendar/dist/fullcalendar.css\'\n```\n\n## Example App\nI have created a simple Vue 2 webpack application as an example/playground\nhttps://github.com/BrockReece/vue-fullcalendar-example\n\nor try out this [Code Sandbox](https://codesandbox.io/s/5xlp873rkl)\n\n### Scheduler\nFor those wanting to use the scheduler plugin, this [Code Sandbox](https://codesandbox.io/s/qlp8jvko3j) shows you a full working example. \n\n## Basic Usage\n\nYou can pass an array of fullclendar objects through the props\n\n```html\n<full-calendar :events="events"></full-calendar>\n...\n<script>\n...\n  data() {\n    return {\n      events: [\n        {\n            title  : \'event1\',\n            start  : \'2010-01-01\',\n        },\n        {\n            title  : \'event2\',\n            start  : \'2010-01-05\',\n            end    : \'2010-01-07\',\n        },\n        {\n            title  : \'event3\',\n            start  : \'2010-01-09T12:30:00\',\n            allDay : false,\n        },\n      ]\n    }\n  }\n...\n</script>\n```\nMore event options can be found at http://fullcalendar.io/docs/event_data/Event_Object/\n\n## Using a JSON Feed\n\n```html\n<full-calendar :event-sources="eventSources"></full-calendar>\n...\n<script>\n...\n  data() {\n    return {\n      eventSources: [\n        {\n          events(start, end, timezone, callback) {\n            self.$http.get(`/myFeed`, {timezone: timezone}).then(response => {\n              callback(response.data.data)\n            })\n          },\n          color: \'yellow\',\n          textColor: \'black\',\n        },\n        {\n          events(start, end, timezone, callback) {\n            self.$http.get(`/anotherFeed`, {timezone: self.timezone}).then(response => {\n              callback(response.data.data)\n            })\n          },\n          color: \'red\',\n        },\n      ]\n    }\n  }\n...\n</script>\n```\n\n## Custom Config\nYou can pass any custom [options](https://fullcalendar.io/docs/) through to fullcalendar by using the `config` prop, this includes extra event handlers.\n```html\n<full-calendar :events="events" :config="config" />\n...\n<script>\n...\n  data() {\n    return {\n      events: [],\n      config: {\n        weekends: false,\n        drop(...args) {\n          //handle drop logic in parent\n        },\n      },\n    }\n  },\n...\n</script>\n```\n\n## Locale\nYou can set the language of your calendar by importing the corresponding locale file and setting the `locale` key in the config prop. For example, to set up the Calendar in French...\n\n```html\n<full-calendar :events="events" :config="config" />\n...\n<script>\nimport \'fullcalendar/dist/locale/fr\'\n...\n  data() {\n    return {\n      events: [],\n      config: {\n        locale: \'fr\',\n      },\n    }\n  },\n...\n</script>\n```\n[Code Sandbox](https://codesandbox.io/s/8yl1xwk388)\n\n*Note: You won\'t need to set the locale config key if your app only imports a single locale file*\n\n## Further Props\nYou can edit the look and feel of fullcalendar by passing through extra props. These all have sensible defaults\n\n- __header__ - [obj] - [docs](http://fullcalendar.io/docs/display/header/)\n- __defaultView__ - [\'agendaWeek\'] - [docs](http://fullcalendar.io/docs/views/defaultView/)\n- __editable__ - [true] - [docs](http://fullcalendar.io/docs/event_ui/editable/)\n- __selectable__ - [true] -  [docs](http://fullcalendar.io/docs/selection/selectable/)\n- __selectHelper__ - [true] - [docs](http://fullcalendar.io/docs/selection/selectHelper/)\n- __config__ - [true] - Pass your own custom config straight through to fullcalendar\n\n## Methods \nSometimes you may need to manipulate the Calendar from your parent component, you can use `fireMethod` for this. This works with anything in the [Fullcalendar docs](https://fullcalendar.io/docs/) suffixed with `(method)` and it will dynamically handle as many arguments as needed.\n```html\n<full-calendar :events="events" ref="calendar" />\n...\n<script>\n...\n  data() {\n    return {\n      events: [],\n    }\n  },\n  \n  methods: {\n    next() {\n      this.$refs.calendar.fireMethod(\'next\')\n    },\n    changeView(view) {\n      this.$refs.calendar.fireMethod(\'changeView\', view)\n    },\n  },\n...\n</script>\n```\n\n## Events and Hooks\n\n### Emitted\n- __event-selected(event, jsEvent, view)__ - Triggered on eventClick()\n- __event-drop(event)__ - Triggered on eventDrop()\n- __event-resize(event)__ - Triggered on eventResize()\n- __event-created(event)__ - Triggered on select()\n- __event-receive(event)__ - Triggered on eventReceive()\n- __event-render(event)__ - Triggered on eventRender()\n- __view-render(view, element)__ - Triggered on viewRender()\n- __day-click(date, jsEvent, view)__ - Triggered on dayClick()\n\nYou can listen for these events using the following markup\n\n```html\n<full-calendar :event-sources="eventSources" @event-selected="eventSelected"></full-calendar>\n```\n### Listens on\n- __render-event(event)__ - Adds a new event to calendar\n- __remove-event(event)__ - Removes event from calendar\n- __rerender-events()__ - Rerenders events to reflect local changes\n- __refetch-events()__ - Makes another JSON call to event sources\n- __reload-events()__ - Removes all events and adds all events in this.events\n\nYou can trigger these events in the parent component like so...\n\n```html\n<full-calendar ref="calendar" :event-sources="eventSources"></full-calendar>\n...\n<script>\n...\n  methods: {\n    refreshEvents() {\n      this.$refs.calendar.$emit(\'refetch-events\')\n    },\n  }\n...\n</script>\n```\n',
+7 verbose unpublish   readmeFilename: 'README.md',
+7 verbose unpublish   _id: 'vue-full-calendar-paket@2.7.0' }
+8 verbose getPublishConfig undefined
+9 silly ls normalized vue-full-calendar-paket\2.7.0
+10 silly gentlyRm C:\Users\ASUS\AppData\Roaming\npm-cache\vue-full-calendar-paket\2.7.0 is being purged
+11 verbose gentlyRm don't care about contents; nuking C:\Users\ASUS\AppData\Roaming\npm-cache\vue-full-calendar-paket\2.7.0
+12 silly vacuum-fs purging C:\Users\ASUS\AppData\Roaming\npm-cache\vue-full-calendar-paket\2.7.0
+13 silly vacuum-fs removing C:\Users\ASUS\AppData\Roaming\npm-cache\vue-full-calendar-paket
+14 silly vacuum-fs quitting because other entries in C:\Users\ASUS\AppData\Roaming\npm-cache
+15 silly mapToRegistry name vue-full-calendar-paket
+16 silly mapToRegistry using default registry
+17 silly mapToRegistry registry https://registry.npmjs.org/
+18 silly mapToRegistry data Result {
+18 silly mapToRegistry   raw: 'vue-full-calendar-paket',
+18 silly mapToRegistry   scope: null,
+18 silly mapToRegistry   escapedName: 'vue-full-calendar-paket',
+18 silly mapToRegistry   name: 'vue-full-calendar-paket',
+18 silly mapToRegistry   rawSpec: '',
+18 silly mapToRegistry   spec: 'latest',
+18 silly mapToRegistry   type: 'tag' }
+19 silly mapToRegistry uri https://registry.npmjs.org/vue-full-calendar-paket
+20 verbose get GET as part of write; not caching result
+21 verbose request uri https://registry.npmjs.org/vue-full-calendar-paket?write=true
+22 verbose request no auth needed
+23 info attempt registry request try #1 at 01:27:19
+24 verbose request using bearer token for auth
+25 verbose request id 00000c36b0d47270
+26 http request GET https://registry.npmjs.org/vue-full-calendar-paket?write=true
+27 http 200 https://registry.npmjs.org/vue-full-calendar-paket?write=true
+28 verbose headers { date: 'Tue, 30 Oct 2018 17:27:20 GMT',
+28 verbose headers   'content-type': 'application/json',
+28 verbose headers   'transfer-encoding': 'chunked',
+28 verbose headers   connection: 'keep-alive',
+28 verbose headers   'set-cookie': [ '__cfduid=d1b6b537f90ad28930f7618cc98c490de1540920440; expires=Wed, 30-Oct-19 17:27:20 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+28 verbose headers   'content-encoding': 'gzip',
+28 verbose headers   'cache-control': 'max-age=300',
+28 verbose headers   'cf-ray': '471f97919ce39693-SJC',
+28 verbose headers   etag: '"5bd892ec-28ed"',
+28 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+28 verbose headers   vary: 'accept-encoding, accept',
+28 verbose headers   'x-couch-request-id': 'undefined',
+28 verbose headers   'x-couchdb-body-time': '0',
+28 verbose headers   server: 'cloudflare' }
+29 silly get cb [ 200,
+29 silly get   { date: 'Tue, 30 Oct 2018 17:27:20 GMT',
+29 silly get     'content-type': 'application/json',
+29 silly get     'transfer-encoding': 'chunked',
+29 silly get     connection: 'keep-alive',
+29 silly get     'set-cookie': [ '__cfduid=d1b6b537f90ad28930f7618cc98c490de1540920440; expires=Wed, 30-Oct-19 17:27:20 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+29 silly get     'content-encoding': 'gzip',
+29 silly get     'cache-control': 'max-age=300',
+29 silly get     'cf-ray': '471f97919ce39693-SJC',
+29 silly get     etag: '"5bd892ec-28ed"',
+29 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+29 silly get     vary: 'accept-encoding, accept',
+29 silly get     'x-couch-request-id': 'undefined',
+29 silly get     'x-couchdb-body-time': '0',
+29 silly get     server: 'cloudflare' } ]
+30 verbose get saving vue-full-calendar-paket to C:\Users\ASUS\AppData\Roaming\npm-cache\registry.npmjs.org\vue-full-calendar-paket_3Fwrite_3Dtrue\.cache.json
+31 verbose correctMkdir C:\Users\ASUS\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+32 verbose unpublish removing attachments { shasum: 'b57e96e27d459fc7e5366d9145f5d13c5728e1bc',
+32 verbose unpublish   tarball: 'https://registry.npmjs.org/vue-full-calendar-paket/-/vue-full-calendar-paket-2.7.0.tgz',
+32 verbose unpublish   integrity: 'sha512-zzpxmg5z8CEZS6/qo1xIiLzQKIX0Y9IjE8R9aVnJ5Wu/OVu5yuRpNMdhwKDBfi3n2skYjQfCpwSZPNnacJm7jA==',
+32 verbose unpublish   fileCount: 14,
+32 verbose unpublish   unpackedSize: 148133,
+32 verbose unpublish   'npm-signature': '-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJb2JLqCRA9TVsSAnZWagAA4xYQAJ3no1HJjcsKwCWoMhh+\nW7SHxFECg9uXXbZumFc8W1O4OD8vqYAlh6axiVnL5EvOHqcB3R6wVy+Xi/6k\njgPtUo+eAkVCmMILOTZvb4Q8THlN24TEuLXnTvB134qNgU5tR4jqeh0hwHQ9\nLEAaZ8NBTo6cfy8R0kQh8Ql/wwKsZ3fRBApmL/Q9BlYn9AJarSEbOGloAory\nL1T9HbFWgG+u29hPN6oQrl+bro4iyhXCwxqkfor2v9qnzjf/DgRHL15eABtY\nqDCN1kbPh3jFvrcfv53+p4aAF549nrpiAU5cp+BPWGjh2q8jtA7eW7C4jBbs\nlFUD3ghpqA3ogX6A2u2yUk2JK6AKINRdu3srrBdoqPJsKXmS3F8+J04yz2ji\njqDUvzdp2qWRjQiAb+Kdp0KOIVblDb5kRYEFZCun1IgtQEyqiGm7JrhIDj54\nl3thqaXpC6Lbnq2ZPvr3v7pF89LiwI48C6ZleUS62VWWDrNSPBL2ADx8fMoJ\nJQ/l9F0/ISty3U/HeO3vzcAfd64Tv0d6zjki06pqQCxFbB07vUXY5qYx9YzB\nOW4ZZ5wRxCNyAYvq/+I/eWar43+KdvT7Mqw1oTN+0X0DxQ/62PsR1OkmaGc0\nqgN2wBXhEZpIPLZHCx71SMyjWYy0SFVlMqvkyjXdK1hWUWk+uKz8USWMxeU3\nLFO8\r\n=t69n\r\n-----END PGP SIGNATURE-----\r\n' }
+33 info unpublish No versions remain, removing entire package
+34 verbose request uri https://registry.npmjs.org/vue-full-calendar-paket/-rev/1-11543e6b35f93224d366da05e7c15745
+35 verbose request sending authorization for write operation
+36 info attempt registry request try #1 at 01:27:19
+37 verbose request using bearer token for auth
+38 http request DELETE https://registry.npmjs.org/vue-full-calendar-paket/-rev/1-11543e6b35f93224d366da05e7c15745
+39 http 401 https://registry.npmjs.org/vue-full-calendar-paket/-rev/1-11543e6b35f93224d366da05e7c15745
+40 verbose headers { date: 'Tue, 30 Oct 2018 17:27:21 GMT',
+40 verbose headers   'content-type': 'application/json',
+40 verbose headers   'content-length': '54',
+40 verbose headers   connection: 'keep-alive',
+40 verbose headers   'set-cookie': [ '__cfduid=d1b6b537f90ad28930f7618cc98c490de1540920440; expires=Wed, 30-Oct-19 17:27:20 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+40 verbose headers   'cf-ray': '471f97939dbf9693-SJC',
+40 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+40 verbose headers   vary: 'Accept-Encoding',
+40 verbose headers   server: 'cloudflare' }
+41 verbose request invalidating C:\Users\ASUS\AppData\Roaming\npm-cache\registry.npmjs.org\vue-full-calendar-paket on DELETE
+42 verbose stack Error: You must be logged in to publish packages. : vue-full-calendar-paket
+42 verbose stack     at makeError (G:\Node\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+42 verbose stack     at CachingRegistryClient.<anonymous> (G:\Node\node_modules\npm\node_modules\npm-registry-client\lib\request.js:290:14)
+42 verbose stack     at Request._callback (G:\Node\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+42 verbose stack     at Request.self.callback (G:\Node\node_modules\npm\node_modules\request\request.js:187:22)
+42 verbose stack     at emitTwo (events.js:106:13)
+42 verbose stack     at Request.emit (events.js:191:7)
+42 verbose stack     at Request.<anonymous> (G:\Node\node_modules\npm\node_modules\request\request.js:1048:10)
+42 verbose stack     at emitOne (events.js:96:13)
+42 verbose stack     at Request.emit (events.js:188:7)
+42 verbose stack     at IncomingMessage.<anonymous> (G:\Node\node_modules\npm\node_modules\request\request.js:969:12)
+43 verbose statusCode 401
+44 verbose pkgid vue-full-calendar-paket
+45 verbose cwd E:\ces\vue-fullcalendar
+46 error Windows_NT 6.1.7601
+47 error argv "G:\\Node\\node.exe" "G:\\Node\\node_modules\\npm\\bin\\npm-cli.js" "unpublish" "--force"
+48 error node v6.11.2
+49 error npm  v3.10.10
+50 error code E401
+51 error You must be logged in to publish packages. : vue-full-calendar-paket
+52 error If you need help, you may report this error at:
+52 error     <https://github.com/npm/npm/issues>
+53 verbose exit [ 1, true ]
