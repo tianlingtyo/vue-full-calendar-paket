@@ -16,7 +16,7 @@ Installing the plugin will globally add the `full-calendar` component to your pr
 
 ```js
 //main.js
-import FullCalendar from 'vue-full-calendar'
+import FullCalendar from 'vue-full-calendar-paket'
 Vue.use(FullCalendar)
 ```
 
@@ -24,7 +24,7 @@ But you can also import the standalone component to add locally or for more comp
 
 ```js
 // foo.vue
-import { FullCalendar } from 'vue-full-calendar'
+import { FullCalendar } from 'vue-full-calendar-paket'
 export default {
   components: {
     FullCalendar,
