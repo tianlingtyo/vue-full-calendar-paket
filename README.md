@@ -1,6 +1,4 @@
 # vue-fullcalendar
-[![npm version](https://badge.fury.io/js/vue-full-calendar.svg)](https://badge.fury.io/js/vue-full-calendar)
-[![Build Status](https://travis-ci.org/CroudSupport/vue-fullcalendar.svg?branch=master)](https://travis-ci.org/CroudSupport/vue-fullcalendar)
 
 
 ## Installation
